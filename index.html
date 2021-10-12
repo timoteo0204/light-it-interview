@@ -15,9 +15,30 @@
             <div class="text-center">
             </div>
         </div>
-    <table>
-    <tbody id="idTable">
-    </tbody>
-    </table>
+  <?php
+    function buildTable($array){
+    
+    $table = '<table>';
+    
+    $table .= '<tr>';
+    foreach($array[0] as $key=>$value){
+            $table .= '<th>' . ($key) . '</th>';
+        }
+    $table .= '</tr>';
+
+    foreach( $array as $key=>$value){
+        $table .= '<tr>';
+        foreach($value as $key2=>$value2){
+            $table .= '<td>' . ($value2) . '</td>';
+        }
+        $table .= '</tr>';
+    }
+    $table .= '</table>';
+    return $table;
+}
+
+$products = $this->products;
+echo buildTable($products);
+?>
     </body>
 </html>

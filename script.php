@@ -1,49 +1,19 @@
 public function updatePrice(){
    foreach($this->getProducts() as $product => $value){
     if($this->getProducts()[$product] != null){
-     $this->getProducts()[$product]["price"] =+ 10;
+     $this->getProducts()[$product]['price'] =+ 10;
     
    }
   }
   }
   
-  
-  public function setTable(){
-
-  $table = new DOMDocument();
-  $tabla->validateOnParse= true;
-  $table->getElementById('idTable');
-    
-    foreach ($this->getProducts() as $product =>$value){
-      $trow = $table->createElement("tr");
-      $trow -> setAttribute ($this->getProducts()[$product]["name"]);
-      $table.appendChild($trow);
-      
-      $theadName = $table->createElement("th");
-      $theadName = $this->getProducts()[$product]["name"];
-      
-      $theadPrice = $table->createElement("th");
-      $theadPrice = $this->getProducts()[$product]["price"];
-      
-      $theadImg = $table->createElement("th");
-      $theadImg = $this->getProducts()[$product]["imgUrl"];
-                               
-      $trow.appendChild($theadName);
-      $trow.appendChild($theadPrice);
-      $trow.appendChild($theadImg);
-      
-      
-    }
-    
-  }
-  
     public function index() {
       $this->updatePrice();
-      $this->setTable();
-      return view('__tinker__::tinkerwell');
+      $products = $this->getProducts[‘Products’];
+      return view('__tinker__::tinkerwell’)->with(‘products’, $products);
     }
-
   
+
     public function getProducts() {
     	return [
   "Products" => [
